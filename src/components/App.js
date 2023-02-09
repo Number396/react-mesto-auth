@@ -12,6 +12,7 @@ import PopupWithForm from "./PopupWithForm";
 import { Navigate, Route, Routes } from "react-router-dom";
 import Register from "./Register";
 import Login from "./Login";
+import Passp from "./Passp";
 
 function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
@@ -113,8 +114,7 @@ function App() {
         <Header />
 
         <Routes>
-          <Route path="/sign-up" element={<Register />}
-          />
+          <Route path="/sign-up" element={<Register />} />
           <Route path="/sign-in" element={<Login />} />
           <Route path="/" element={
             <>

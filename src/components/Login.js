@@ -1,8 +1,12 @@
+import Passp from "./Passp";
+
 function Login() {
     return (
-        <div>
-            this is Login
-        </div>
+        <Passp
+            title="Вход"
+            name="login"
+            btnText="Войти"
+        />
     );
 
 }
