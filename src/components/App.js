@@ -9,6 +9,9 @@ import Header from "./Header";
 import ImagePopup from "./ImagePopup";
 import Main from "./Main";
 import PopupWithForm from "./PopupWithForm";
+import { Navigate, Route, Routes } from "react-router-dom";
+import Register from "./Register";
+import Login from "./Login";
 
 function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
@@ -21,6 +24,7 @@ function App() {
   //поднял контекст что бы ресетить поля формы после удачного запроса
   const [name, setName] = useState('');
   const [link, setLink] = useState('');
+  const [loggedIn, setLoggedIn] = useState(false);
 
   useEffect(() => {
     Promise.all([api.getUserInfo(), api.getCards()])
@@ -105,8 +109,33 @@ function App() {
   return (
     <div className="page">
       <CurrentUserContext.Provider value={currentUser}>
+        {/* <Header /> */}
         <Header />
-        <Main
+
+        <Routes>
+          <Route path="/sign-up" element={<Register />}
+          />
+          <Route path="/sign-in" element={<Login />} />
+          <Route path="/" element={
+            <>
+              <Main
+                onEditProfile={handleEditProfileClick}
+                onAddPlace={handleAddPlaceClick}
+                onEditAvatar={handleEditAvatarClick}
+                onCardClick={handleCardClick}
+                onCardLike={handleCardLike}
+                cards={cards}
+                setCards={setCards}
+                onCardDelete={handleCardDelete}
+              />
+            </>
+          }
+          />
+          <Route path="*" element={loggedIn ? <Navigate to="/" /> : <Navigate to="/sign-in" />} />
+        </Routes>
+
+        <Footer />
+        {/* <Main
           onEditProfile={handleEditProfileClick}
           onAddPlace={handleAddPlaceClick}
           onEditAvatar={handleEditAvatarClick}
@@ -115,8 +144,8 @@ function App() {
           cards={cards}
           setCards={setCards}
           onCardDelete={handleCardDelete}
-        />
-        <Footer />
+        /> */}
+        {/* <Footer /> */}
         <EditProfilePopup
           isOpen={isEditProfilePopupOpen}
           onClose={closeAllPopups}
