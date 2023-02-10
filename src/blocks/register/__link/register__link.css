@@ -1,4 +1,10 @@
 .register__link {
   padding-left: 5px;
   color: white;
+  transition: opacity 100ms ease-in-out;
+  text-decoration: none;
+}
+
+.register__link:hover {
+  opacity: 0.8;
 }

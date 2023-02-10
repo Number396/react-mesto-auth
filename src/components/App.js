@@ -131,6 +131,7 @@ function App() {
             </>
           }
           />
+          {/* todo сделать ссылку активной */}
           <Route path="*" element={loggedIn ? <Navigate to="/" /> : <Navigate to="/sign-in" />} />
         </Routes>
 
