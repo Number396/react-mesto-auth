@@ -13,12 +13,14 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import Register from "./Register";
 import Login from "./Login";
 import Passp from "./Passp";
+import InfoTooltip from "./InfoTooltip";
 
 function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
   const [isAddPlacePopupOpen, setisAddPlacePopupOpen] = useState(false);
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
   const [isImagePopupOpen, setIsImagePopupOpen] = useState(false);
+  const [isInfoTooltipOpen, setIsInfoTooltipOpen] = useState(false);
   const [selectedCard, setSelectedCard] = useState({});
   const [currentUser, setCurrentUser] = useState({});
   const [cards, setCards] = useState([]);
@@ -48,11 +50,16 @@ function App() {
     setIsEditAvatarPopupOpen(true);
   }
 
+  function handleInfoTooltipOpen() {
+    setIsInfoTooltipOpen(true);
+  }
+
   function closeAllPopups() {
     setIsEditProfilePopupOpen(false);
     setisAddPlacePopupOpen(false);
     setIsEditAvatarPopupOpen(false);
     setIsImagePopupOpen(false);
+    setIsInfoTooltipOpen(false);
   }
 
   function handleCardClick(card) {
@@ -110,8 +117,9 @@ function App() {
   return (
     <div className="page">
       <CurrentUserContext.Provider value={currentUser}>
-        {/* <Header /> */}
-        <Header />
+        <Header
+          isLoggedIn={loggedIn}
+        />
 
         <Routes>
           <Route path="/sign-up" element={<Register />} />
@@ -136,17 +144,7 @@ function App() {
         </Routes>
 
         <Footer />
-        {/* <Main
-          onEditProfile={handleEditProfileClick}
-          onAddPlace={handleAddPlaceClick}
-          onEditAvatar={handleEditAvatarClick}
-          onCardClick={handleCardClick}
-          onCardLike={handleCardLike}
-          cards={cards}
-          setCards={setCards}
-          onCardDelete={handleCardDelete}
-        /> */}
-        {/* <Footer /> */}
+
         <EditProfilePopup
           isOpen={isEditProfilePopupOpen}
           onClose={closeAllPopups}
@@ -180,6 +178,12 @@ function App() {
           card={selectedCard}
           isOpen={isImagePopupOpen}
           onClose={closeAllPopups} />
+
+        <InfoTooltip
+          isOpen={isInfoTooltipOpen}
+          onClose={closeAllPopups}
+        />
+
       </CurrentUserContext.Provider>
     </div>
   );
