@@ -9,19 +9,21 @@ import Header from "./Header";
 import ImagePopup from "./ImagePopup";
 import Main from "./Main";
 import PopupWithForm from "./PopupWithForm";
-import { Navigate, Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
 import Register from "./Register";
 import Login from "./Login";
 
 import InfoTooltip from "./InfoTooltip";
 import ProtectedRouteElement from "./ProtectedRoute";
+import { apiAuth } from "../utils/authApi";
 
 function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
   const [isAddPlacePopupOpen, setisAddPlacePopupOpen] = useState(false);
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
   const [isImagePopupOpen, setIsImagePopupOpen] = useState(false);
-  const [isInfoTooltipOpen, setIsInfoTooltipOpen] = useState(false);
+  // const [isInfoTooltipOpen, setIsInfoTooltipOpen] = useState(false);
+  const [isInfoTooltipOpen, setIsInfoTooltipOpen] = useState({ isOpen: false, succeded: false });
   const [selectedCard, setSelectedCard] = useState({});
   const [currentUser, setCurrentUser] = useState({});
   const [cards, setCards] = useState([]);
@@ -29,6 +31,7 @@ function App() {
   const [name, setName] = useState('');
   const [link, setLink] = useState('');
   const [loggedIn, setLoggedIn] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     Promise.all([api.getUserInfo(), api.getCards()])
@@ -51,9 +54,9 @@ function App() {
     setIsEditAvatarPopupOpen(true);
   }
 
-  function handleInfoTooltipOpen() {
-    setIsInfoTooltipOpen(true);
-  }
+  // function handleInfoTooltipOpen() {
+  //   setIsInfoTooltipOpen(true);
+  // }
 
   function closeAllPopups() {
     setIsEditProfilePopupOpen(false);
@@ -115,6 +118,20 @@ function App() {
       .catch((error) => console.log(`Ошибка добавления карточки: ${error}`))
   }
 
+  function handleRegister({ email, password }) {
+    console.log(email, password);
+    apiAuth.register(email, password)
+      .then((data) => {
+        setIsInfoTooltipOpen({ isOpen: true, succeded: true });
+        navigate("/signin", { replace: true });
+        console.log(data);
+      })
+      .catch((error) => {
+        setIsInfoTooltipOpen({ isOpen: true, succeded: false });
+        console.log(`Ошибка регистрации: ${error}`)
+      })
+  }
+
   return (
     <div className="page">
       <CurrentUserContext.Provider value={currentUser}>
@@ -123,7 +140,13 @@ function App() {
         />
 
         <Routes>
-          <Route path="/signup" element={<Register loggedIn={loggedIn} />} />
+          <Route
+            path="/signup"
+            element={<Register
+              loggedIn={loggedIn}
+              handleRegister={handleRegister}
+            />}
+          />
           <Route path="/signin" element={<Login loggedIn={loggedIn} />} />
           <Route path="*" element={loggedIn ? <Navigate to="/" /> : <Navigate to="/signin" />} />
           <Route path="/" element={<ProtectedRouteElement

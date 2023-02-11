@@ -1,17 +1,24 @@
 import unionLogoSuccess from '../images/UnionSuccess.svg';
 import unionLogoFail from '../images/UnionFail.svg';
-const isSucceded = false;
-const unionLogo = `${isSucceded ? unionLogoSuccess : unionLogoFail}`;
-const message = `${isSucceded ? "Вы успешно зарегистрировались" : "Что-то пошло не так! Попробуйте ещё раз."}`;
+// const isSucceded = false;
+// const unionLogo = `${isSucceded ? unionLogoSuccess : unionLogoFail}`;
+// const message = `${isSucceded ? "Вы успешно зарегистрировались" : "Что-то пошло не так! Попробуйте ещё раз."}`;
 
 // console.log(unionLogoSuccess);
 // console.log(unionLogoFail);
-console.log(unionLogo);
+// console.log(unionLogo);
 
 function InfoTooltip({ isOpen, onClose }) {
+    console.log('succeded', isOpen.succeded);
+    console.log('Open', isOpen.isOpen);
+    // const isSucceded = isOpen.succeded;
+    const unionLogo = `${isOpen.succeded ? unionLogoSuccess : unionLogoFail}`;
+    const message = `${isOpen.succeded ? "Вы успешно зарегистрировались" : "Что-то пошло не так! Попробуйте ещё раз."}`;
+
+
     return (
-        <div className="popup ">
-            <div className={`popup__container ${isOpen && "popup_enabled"}`}>
+        <div className={`popup ${isOpen && "popup_enabled"}`}>
+            <div className="popup__container">
                 <button
                     onClick={onClose}
                     aria-label="кнопка закрыть"

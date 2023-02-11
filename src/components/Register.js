@@ -1,35 +1,63 @@
+import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import Passp from "./Passp";
 
 
-function Register(props) {
+function Register({ loggedIn, handleRegister }) {
+    const [userData, setUserData] = useState({
+        email: '',
+        password: ''
+    });
+
+    function handleChange(e) {
+        const { name, value } = e.target;
+        setUserData({ ...userData, [name]: value });
+    }
+
+    function handleSubmit(e) {
+        e.preventDefault();
+        // console.log(userData.email, userData.password);
+        handleRegister(userData);
+    }
+
+
     return (
         <Passp
             title="Регистрация"
             name="registration"
             btnText="Зарегистрироваться"
-            loggedIn={props.loggedIn}
+            loggedIn={loggedIn}
             isRegister={true}
+            onSubmit={handleSubmit}
+
         >
             <input
                 type="email"
                 name="email"
                 id="email"
                 placeholder="Email"
-                required
                 className="passp__input"
+                required
+                minLength="2"
+                maxLength="40"
+                onChange={handleChange}
+                value={userData.email}
             />
             <input
                 type="password"
                 name="password"
                 id="password"
                 placeholder="Пароль"
-                required
                 className="passp__input"
+                required
+                minLength="2"
+                maxLength="40"
+                onChange={handleChange}
+                value={userData.password}
             />
-            {/* <p className="passp__suggestion">Уже зарегистрированы? <NavLink to="/sign-in" className="register__link">Войти</NavLink></p> */}
+
         </Passp>
 
-    );
+    )
 }
 export default Register;
