@@ -12,8 +12,9 @@ import PopupWithForm from "./PopupWithForm";
 import { Navigate, Route, Routes } from "react-router-dom";
 import Register from "./Register";
 import Login from "./Login";
-import Passp from "./Passp";
+
 import InfoTooltip from "./InfoTooltip";
+import ProtectedRouteElement from "./ProtectedRoute";
 
 function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
@@ -124,8 +125,9 @@ function App() {
         <Routes>
           <Route path="/sign-up" element={<Register />} />
           <Route path="/sign-in" element={<Login />} />
-          <Route path="/" element={
-            <>
+          <Route path="*" element={loggedIn ? <Navigate to="/" /> : <Navigate to="/sign-in" />} />
+          <Route path="/" element={<ProtectedRouteElement
+            element={
               <Main
                 onEditProfile={handleEditProfileClick}
                 onAddPlace={handleAddPlaceClick}
@@ -136,11 +138,11 @@ function App() {
                 setCards={setCards}
                 onCardDelete={handleCardDelete}
               />
-            </>
-          }
+            }
+            loggedIn={loggedIn}
+          />}
           />
-          {/* todo сделать ссылку активной */}
-          <Route path="*" element={loggedIn ? <Navigate to="/" /> : <Navigate to="/sign-in" />} />
+
         </Routes>
 
         <Footer />
