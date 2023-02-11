@@ -6,11 +6,11 @@ function Header({ isLoggedIn }) {
             <div className="header__logo"></div>
             <p className="header__login">
                 {isLoggedIn ? (
-                    <NavLink to="/sign-in" className="register__link">
+                    <NavLink to="/signin" className="register__link">
                         Выход
                     </NavLink>
                 ) : (
-                    <NavLink to="/sign-up" className="register__link">
+                    <NavLink to="/signup" className="register__link">
                         Регистрация
                     </NavLink>
                 )}

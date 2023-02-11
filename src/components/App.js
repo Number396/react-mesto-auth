@@ -123,9 +123,9 @@ function App() {
         />
 
         <Routes>
-          <Route path="/sign-up" element={<Register />} />
-          <Route path="/sign-in" element={<Login />} />
-          <Route path="*" element={loggedIn ? <Navigate to="/" /> : <Navigate to="/sign-in" />} />
+          <Route path="/signup" element={<Register loggedIn={loggedIn} />} />
+          <Route path="/signin" element={<Login loggedIn={loggedIn} />} />
+          <Route path="*" element={loggedIn ? <Navigate to="/" /> : <Navigate to="/signin" />} />
           <Route path="/" element={<ProtectedRouteElement
             element={
               <Main

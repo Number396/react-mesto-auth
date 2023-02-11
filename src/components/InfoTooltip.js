@@ -1,6 +1,6 @@
 import unionLogoSuccess from '../images/UnionSuccess.svg';
 import unionLogoFail from '../images/UnionFail.svg';
-const isSucceded = true;
+const isSucceded = false;
 const unionLogo = `${isSucceded ? unionLogoSuccess : unionLogoFail}`;
 const message = `${isSucceded ? "Вы успешно зарегистрировались" : "Что-то пошло не так! Попробуйте ещё раз."}`;
 
