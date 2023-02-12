@@ -8,16 +8,13 @@ import unionLogoFail from '../images/UnionFail.svg';
 // console.log(unionLogoFail);
 // console.log(unionLogo);
 
-function InfoTooltip({ isOpen, onClose }) {
-    console.log('succeded', isOpen.succeded);
-    console.log('Open', isOpen.isOpen);
-    // const isSucceded = isOpen.succeded;
-    const unionLogo = `${isOpen.succeded ? unionLogoSuccess : unionLogoFail}`;
-    const message = `${isOpen.succeded ? "Вы успешно зарегистрировались" : "Что-то пошло не так! Попробуйте ещё раз."}`;
+function InfoTooltip({ infoTooltipSet, onClose }) {
+    const unionLogo = `${infoTooltipSet.isSucceded ? unionLogoSuccess : unionLogoFail}`;
+    const message = `${infoTooltipSet.isSucceded ? "Вы успешно зарегистрировались" : "Что-то пошло не так! Попробуйте ещё раз."}`;
 
 
     return (
-        <div className={`popup ${isOpen && "popup_enabled"}`}>
+        <div className={`popup ${infoTooltipSet.isOpen && "popup_enabled"}`}>
             <div className="popup__container">
                 <button
                     onClick={onClose}

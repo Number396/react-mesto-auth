@@ -23,7 +23,7 @@ function App() {
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
   const [isImagePopupOpen, setIsImagePopupOpen] = useState(false);
   // const [isInfoTooltipOpen, setIsInfoTooltipOpen] = useState(false);
-  const [isInfoTooltipOpen, setIsInfoTooltipOpen] = useState({ isOpen: false, succeded: false });
+  const [infoTooltipSet, setInfoTooltipSet] = useState({ isOpen: false, isSucceded: false });
   const [selectedCard, setSelectedCard] = useState({});
   const [currentUser, setCurrentUser] = useState({});
   const [cards, setCards] = useState([]);
@@ -63,7 +63,7 @@ function App() {
     setisAddPlacePopupOpen(false);
     setIsEditAvatarPopupOpen(false);
     setIsImagePopupOpen(false);
-    setIsInfoTooltipOpen(false);
+    setInfoTooltipSet({ ...infoTooltipSet, isOpen: false });
   }
 
   function handleCardClick(card) {
@@ -122,12 +122,12 @@ function App() {
     console.log(email, password);
     apiAuth.register(email, password)
       .then((data) => {
-        setIsInfoTooltipOpen({ isOpen: true, succeded: true });
+        setInfoTooltipSet({ isOpen: true, isSucceded: true });
         navigate("/signin", { replace: true });
         console.log(data);
       })
       .catch((error) => {
-        setIsInfoTooltipOpen({ isOpen: true, succeded: false });
+        setInfoTooltipSet({ isOpen: true, isSucceded: false });
         console.log(`Ошибка регистрации: ${error}`)
       })
   }
@@ -205,7 +205,7 @@ function App() {
           onClose={closeAllPopups} />
 
         <InfoTooltip
-          isOpen={isInfoTooltipOpen}
+          infoTooltipSet={infoTooltipSet}
           onClose={closeAllPopups}
         />
 
