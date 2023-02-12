@@ -172,6 +172,7 @@ function App() {
     console.log('hello click');
     localStorage.removeItem("token");
     navigate("/signin", { replace: true });
+    setLoggedIn(false);
     // const history = useHistory()
   }
 

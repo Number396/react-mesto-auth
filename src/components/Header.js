@@ -7,12 +7,13 @@ function Header({ isLoggedIn, onLoginClick }) {
     return (
         <header className="header">
             <div className="header__logo"></div>
-            <button
+            {isLoggedIn && <button
                 type="button"
                 onClick={onLoginClick}
                 className="header__login">
                 Выход
             </button>
+            }
         </header>
     );
 }
