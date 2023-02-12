@@ -132,6 +132,15 @@ function App() {
       })
   }
 
+  function handleLogin({ email, password }) {
+    // console.log(email, password);
+    apiAuth.login(email, password)
+      .then(({ token }) => {
+        console.log(token);
+      })
+      .catch((error) => console.log(`Ошибка регистрации: ${error}`))
+  }
+
   return (
     <div className="page">
       <CurrentUserContext.Provider value={currentUser}>
@@ -142,12 +151,20 @@ function App() {
         <Routes>
           <Route
             path="/signup"
-            element={<Register
-              loggedIn={loggedIn}
-              handleRegister={handleRegister}
-            />}
+            element={
+              <Register
+                loggedIn={loggedIn}
+                handleRegister={handleRegister}
+              />}
           />
-          <Route path="/signin" element={<Login loggedIn={loggedIn} />} />
+          <Route
+            path="/signin"
+            element={
+              <Login
+                loggedIn={loggedIn}
+                handleLogin={handleLogin}
+              />}
+          />
           <Route path="*" element={loggedIn ? <Navigate to="/" /> : <Navigate to="/signin" />} />
           <Route path="/" element={<ProtectedRouteElement
             element={

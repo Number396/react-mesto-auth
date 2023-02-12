@@ -41,7 +41,7 @@ function Register({ loggedIn, handleRegister }) {
                 minLength="2"
                 maxLength="40"
                 onChange={handleChange}
-                value={userData.email}
+                value={userData.email || ''}
             />
             <input
                 type="password"
@@ -53,7 +53,7 @@ function Register({ loggedIn, handleRegister }) {
                 minLength="2"
                 maxLength="40"
                 onChange={handleChange}
-                value={userData.password}
+                value={userData.password || ''}
             />
 
         </Passp>

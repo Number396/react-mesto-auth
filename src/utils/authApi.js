@@ -5,6 +5,7 @@ class Api {
         this._baseUrl = url;
         this._headers = headers;
         this._signupUrl = `${this._baseUrl}signup`;
+        this._signinUrl = `${this._baseUrl}signin`;
     }
 
     _checkResponse(response) {
@@ -24,6 +25,15 @@ class Api {
     register(email, password) {
         console.log(email, password);
         return this._request(this._signupUrl, {
+            method: "POST",
+            headers: this._headers,
+            body: JSON.stringify({ password, email }),
+        })
+    };
+
+    login(email, password) {
+        console.log(email, password);
+        return this._request(this._signinUrl, {
             method: "POST",
             headers: this._headers,
             body: JSON.stringify({ password, email }),

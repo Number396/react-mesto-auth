@@ -20,7 +20,8 @@ function Passp(props) {
                             to="/sign-in"
                             className="register__link">Войти
                         </NavLink>
-                    </p> : ""}
+                    </p> : ""
+                }
             </form>
         </section>
     );
