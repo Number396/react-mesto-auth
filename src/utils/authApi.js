@@ -6,6 +6,7 @@ class Api {
         this._headers = headers;
         this._signupUrl = `${this._baseUrl}signup`;
         this._signinUrl = `${this._baseUrl}signin`;
+        this._userUrl = `${this._baseUrl}users/me`;
     }
 
     _checkResponse(response) {
@@ -38,6 +39,17 @@ class Api {
             headers: this._headers,
             body: JSON.stringify({ password, email }),
         })
+    };
+
+    getContent(token) {
+        return this._request(this._userUrl, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`,
+            }
+        })
+
     };
 }
 

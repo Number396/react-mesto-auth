@@ -42,6 +42,11 @@ function App() {
       .catch((error) => console.log(`Ошибка при загрузке страницы: ${error}`));
   }, []);
 
+  useEffect(() => {
+    tokenCheck();
+  }, []);
+
+
   function handleEditProfileClick() {
     setIsEditProfilePopupOpen(true);
   }
@@ -145,6 +150,20 @@ function App() {
       })
       .catch((error) => console.log(`Ошибка входа: ${error}`))
     console.log(loggedIn);
+  }
+
+  function tokenCheck() {
+    const token = localStorage.getItem("token");
+    if (token) {
+      apiAuth.getContent(token)
+        .then((data) => {
+          console.log(data);
+          setLoggedIn(true);
+          navigate("/", { replace: true });
+        })
+        .catch((error) => console.log(`Ошибка токена: ${error}`))
+
+    }
   }
 
   return (
