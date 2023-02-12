@@ -14,7 +14,7 @@ import Register from "./Register";
 import Login from "./Login";
 
 import InfoTooltip from "./InfoTooltip";
-import ProtectedRouteElement from "./ProtectedRoute";
+import ProtectedRoute from "./ProtectedRoute";
 import { apiAuth } from "../utils/authApi";
 
 function App() {
@@ -135,10 +135,16 @@ function App() {
   function handleLogin({ email, password }) {
     // console.log(email, password);
     apiAuth.login(email, password)
-      .then(({ token }) => {
-        console.log(token);
+      .then((data) => {
+        console.log(data);
+        if (data.token) {
+          localStorage.setItem("token", data.token);
+          setLoggedIn(true);
+          navigate("/", { replace: true });
+        }
       })
-      .catch((error) => console.log(`Ошибка регистрации: ${error}`))
+      .catch((error) => console.log(`Ошибка входа: ${error}`))
+    console.log(loggedIn);
   }
 
   return (
@@ -166,23 +172,20 @@ function App() {
               />}
           />
           <Route path="*" element={loggedIn ? <Navigate to="/" /> : <Navigate to="/signin" />} />
-          <Route path="/" element={<ProtectedRouteElement
-            element={
-              <Main
-                onEditProfile={handleEditProfileClick}
-                onAddPlace={handleAddPlaceClick}
-                onEditAvatar={handleEditAvatarClick}
-                onCardClick={handleCardClick}
-                onCardLike={handleCardLike}
-                cards={cards}
-                setCards={setCards}
-                onCardDelete={handleCardDelete}
-              />
-            }
-            loggedIn={loggedIn}
-          />}
+          <Route path="/" element={
+            <ProtectedRoute
+              component={Main}
+              onEditProfile={handleEditProfileClick}
+              onAddPlace={handleAddPlaceClick}
+              onEditAvatar={handleEditAvatarClick}
+              onCardClick={handleCardClick}
+              onCardLike={handleCardLike}
+              cards={cards}
+              setCards={setCards}
+              onCardDelete={handleCardDelete}
+              loggedIn={loggedIn}
+            />}
           />
-
         </Routes>
 
         <Footer />

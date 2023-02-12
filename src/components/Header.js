@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom";
 
 function Header({ isLoggedIn }) {
+
     return (
         <header className="header">
             <div className="header__logo"></div>
