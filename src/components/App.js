@@ -59,6 +59,8 @@ function App() {
     setIsEditAvatarPopupOpen(true);
   }
 
+
+
   // function handleInfoTooltipOpen() {
   //   setIsInfoTooltipOpen(true);
   // }
@@ -166,11 +168,19 @@ function App() {
     }
   }
 
+  function handleLoginClick() {
+    console.log('hello click');
+    localStorage.removeItem("token");
+    navigate("/signin", { replace: true });
+    // const history = useHistory()
+  }
+
   return (
     <div className="page">
       <CurrentUserContext.Provider value={currentUser}>
         <Header
           isLoggedIn={loggedIn}
+          onLoginClick={handleLoginClick}
         />
 
         <Routes>
