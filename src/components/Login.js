@@ -15,7 +15,6 @@ function Login({ loggedIn, handleLogin }) {
 
     function handleSubmit(e) {
         e.preventDefault();
-        // console.log(userData.email, userData.password);
         handleLogin(userData);
     }
 

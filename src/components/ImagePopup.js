@@ -2,8 +2,7 @@ function ImagePopup({ card, isOpen, onClose }) {
 
     return (
         <div
-            className={`popup popup_show-image ${card && isOpen && "popup_enabled"
-                }`}
+            className={`popup popup_show-image ${card && isOpen && "popup_enabled"}`}
         >
             <figure className="popup__picture">
                 <img

@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Link, NavLink } from "react-router-dom";
 import Passp from "./Passp";
 
 
@@ -16,7 +15,6 @@ function Register({ loggedIn, handleRegister }) {
 
     function handleSubmit(e) {
         e.preventDefault();
-        // console.log(userData.email, userData.password);
         handleRegister(userData);
     }
 

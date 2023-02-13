@@ -1,7 +1,6 @@
 import { NavLink } from "react-router-dom";
 
 function Passp(props) {
-    // console.log(props.loggedIn);
 
     return (
         <section className="passp">

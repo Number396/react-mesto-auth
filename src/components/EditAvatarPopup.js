@@ -13,7 +13,6 @@ function EditAvatarPopup(props) {
             title="Обновить аватар"
             name="avatar"
             btnText="Сохранить"
-            // flsClass="popup__set"
             isOpen={props.isOpen}
             onClose={props.onClose}
             onSubmit={handleSubmit}
