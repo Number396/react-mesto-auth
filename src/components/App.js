@@ -31,7 +31,9 @@ function App() {
   const [name, setName] = useState('');
   const [link, setLink] = useState('');
   const [loggedIn, setLoggedIn] = useState(false);
+  const [userData, setUserData] = useState({ email: ' ' });
   const navigate = useNavigate();
+
 
   useEffect(() => {
     Promise.all([api.getUserInfo(), api.getCards()])
@@ -140,7 +142,6 @@ function App() {
   }
 
   function handleLogin({ email, password }) {
-    // console.log(email, password);
     apiAuth.login(email, password)
       .then((data) => {
         console.log(data);
@@ -150,30 +151,28 @@ function App() {
           navigate("/", { replace: true });
         }
       })
+      .then(() => tokenCheck())
       .catch((error) => console.log(`Ошибка входа: ${error}`))
-    console.log(loggedIn);
+    // console.log(loggedIn);
   }
 
   function tokenCheck() {
     const token = localStorage.getItem("token");
     if (token) {
       apiAuth.getContent(token)
-        .then((data) => {
-          console.log(data);
+        .then(({ data }) => {
           setLoggedIn(true);
+          setUserData({ email: data.email });
           navigate("/", { replace: true });
         })
-        .catch((error) => console.log(`Ошибка токена: ${error}`))
-
+        .catch((error) => console.log(`Ошибка: ${error}`))
     }
   }
 
   function handleLoginClick() {
-    console.log('hello click');
     localStorage.removeItem("token");
     navigate("/signin", { replace: true });
     setLoggedIn(false);
-    // const history = useHistory()
   }
 
   return (
@@ -182,6 +181,7 @@ function App() {
         <Header
           isLoggedIn={loggedIn}
           onLoginClick={handleLoginClick}
+          userData={userData}
         />
 
         <Routes>

@@ -1,12 +1,4 @@
 .header__login {
-  font-weight: 400;
-  font-size: 18px;
-  line-height: 22px;
-  margin: 6px 0 0;
-  border: 0;
-  padding: 0;
-  background-color: transparent;
-  color: white;
-  align-self: baseline;
-  cursor: pointer;
+  display: flex;
+  align-self: flex-start;
 }
