@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Passp from "./Passp";
+import AuthPage from "./AuthPage";
 
 
 function Login({ loggedIn, handleLogin }) {
@@ -19,7 +19,7 @@ function Login({ loggedIn, handleLogin }) {
     }
 
     return (
-        <Passp
+        <AuthPage
             title="Вход"
             name="login"
             btnText="Войти"
@@ -31,7 +31,7 @@ function Login({ loggedIn, handleLogin }) {
                 name="email"
                 id="email"
                 placeholder="Email"
-                className="passp__input"
+                className="authpage__input"
                 required
                 minLength="2"
                 maxLength="40"
@@ -43,14 +43,14 @@ function Login({ loggedIn, handleLogin }) {
                 name="password"
                 id="password"
                 placeholder="Пароль"
-                className="passp__input"
+                className="authpage__input"
                 required
                 minLength="2"
                 maxLength="40"
                 onChange={handleChange}
                 value={userData.password || ''}
             />
-        </Passp>
+        </AuthPage>
     );
 
 }

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Passp from "./Passp";
+import AuthPage from "./AuthPage";
 
 
 function Register({ loggedIn, handleRegister }) {
@@ -20,7 +20,7 @@ function Register({ loggedIn, handleRegister }) {
 
 
     return (
-        <Passp
+        <AuthPage
             title="Регистрация"
             name="registration"
             btnText="Зарегистрироваться"
@@ -34,7 +34,7 @@ function Register({ loggedIn, handleRegister }) {
                 name="email"
                 id="email"
                 placeholder="Email"
-                className="passp__input"
+                className="authpage__input"
                 required
                 minLength="2"
                 maxLength="40"
@@ -46,7 +46,7 @@ function Register({ loggedIn, handleRegister }) {
                 name="password"
                 id="password"
                 placeholder="Пароль"
-                className="passp__input"
+                className="authpage__input"
                 required
                 minLength="2"
                 maxLength="40"
@@ -54,7 +54,7 @@ function Register({ loggedIn, handleRegister }) {
                 value={userData.password || ''}
             />
 
-        </Passp>
+        </AuthPage>
 
     )
 }

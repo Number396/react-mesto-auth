@@ -1,4 +1,4 @@
-.passp__submit-button {
+.authpage__submit-button {
   background-color: white;
   margin-top: 216px;
   padding: 0;
@@ -14,6 +14,6 @@
   transition: opacity 100ms ease-in-out;
 }
 
-.passp__submit-button:hover {
+.authpage__submit-button:hover {
   opacity: 0.85;
 }

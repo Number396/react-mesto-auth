@@ -151,7 +151,7 @@ function App() {
     const token = localStorage.getItem("token");
     if (token) {
       apiAuth
-        .getContent(token)
+        .checkToken(token)
         .then(({ data }) => {
           setLoggedIn(true);
           setUserData({ email: data.email });
@@ -231,12 +231,12 @@ function App() {
 
         />
 
-        <PopupWithForm>
+        <PopupWithForm
           title="Вы уверены?"
           name="confirm"
           btnText="Да"
           extraClass="popup__set_type_confirm"
-        </PopupWithForm>
+        />
 
         <ImagePopup
           card={selectedCard}

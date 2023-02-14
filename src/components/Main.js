@@ -10,7 +10,7 @@ function Main(props) {
             <section className="profile">
                 <div className="profile__data">
                     <div className="profile__avatar-wrapper">
-                        <img className="profile__avatar" src={currentUser.avatar} alt="" />
+                        <img className="profile__avatar" src={currentUser.avatar} alt="Изображение аватара." />
                         <button
                             onClick={props.onEditAvatar}
                             aria-label=""

@@ -41,7 +41,7 @@ class Api {
         })
     };
 
-    getContent(token) {
+    checkToken(token) {
         return this._request(this._userUrl, {
             method: "GET",
             headers: {

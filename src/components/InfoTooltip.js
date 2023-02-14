@@ -14,7 +14,7 @@ function InfoTooltip({ infoTooltipSet, onClose }) {
                     type="button"
                     className="popup__close-button button-opacity"
                 ></button>
-                <img className="popup__union" src={unionLogo} alt=" " />
+                <img className="popup__union" src={unionLogo} alt="Изображение авторазиции." />
                 <p className="popup__message">{message}</p>
             </div>
         </div>
