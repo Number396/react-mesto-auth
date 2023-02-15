@@ -1,21 +1,13 @@
-import React, { useState } from "react";
+import { useForm } from "../hooks/useForm";
 import AuthPage from "./AuthPage";
 
 
 function Login({ loggedIn, handleLogin }) {
-    const [userData, setUserData] = useState({
-        email: '',
-        password: ''
-    });
-
-    function handleChange(e) {
-        const { name, value } = e.target;
-        setUserData({ ...userData, [name]: value });
-    }
+    const { values, handleChange, setValues } = useForm({});
 
     function handleSubmit(e) {
         e.preventDefault();
-        handleLogin(userData);
+        handleLogin(values);
     }
 
     return (
@@ -36,7 +28,7 @@ function Login({ loggedIn, handleLogin }) {
                 minLength="2"
                 maxLength="40"
                 onChange={handleChange}
-                value={userData.email || ''}
+                value={values.email || ''}
             />
             <input
                 type="password"
@@ -48,7 +40,7 @@ function Login({ loggedIn, handleLogin }) {
                 minLength="2"
                 maxLength="40"
                 onChange={handleChange}
-                value={userData.password || ''}
+                value={values.password || ''}
             />
         </AuthPage>
     );
