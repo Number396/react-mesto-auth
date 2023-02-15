@@ -27,7 +27,7 @@ function App() {
   const [currentUser, setCurrentUser] = useState({});
   const [cards, setCards] = useState([]);
   const [loggedIn, setLoggedIn] = useState(false);
-  const [userData, setUserData] = useState({ email: " " });
+  const [userData, setUserData] = useState({ email: " " }); //используется для email в хедере
   const navigate = useNavigate();
 
   useEffect(() => {
