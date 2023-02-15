@@ -1,32 +1,19 @@
-import { useState, useContext, useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
+import { useForm } from "../hooks/useForm";
 import PopupWithForm from "./PopupWithForm";
 
 function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
-    const [name, setName] = useState('');
-    const [description, setDescription] = useState('');
     const currentUser = useContext(CurrentUserContext);
-
-    function handleNameChange(e) {
-        setName(e.target.value);
-    }
-
-    function handleDescriptionChange(e) {
-        setDescription(e.target.value);
-    }
+    const { values, handleChange, setValues } = useForm({});
 
     function handleSubmit(e) {
         e.preventDefault();
-
-        onUpdateUser({
-            name,
-            about: description,
-        });
+        onUpdateUser(values);
     }
 
     useEffect(() => {
-        setName(currentUser.name);
-        setDescription(currentUser.about);
+        setValues({ nameinput: currentUser.name, aboutinput: currentUser.about });
     }, [currentUser, isOpen]);
 
     return (
@@ -40,28 +27,28 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
         >
             <input
                 type="text"
-                name="name-input"
+                name="nameinput"
                 id="name"
                 placeholder="Имя"
                 className="popup__input popup__input_type_name"
                 required
                 minLength="2"
                 maxLength="40"
-                onChange={handleNameChange}
-                value={name || ''}
+                onChange={handleChange}
+                value={values.nameinput || ''}
             />
             <span className="popup__input-error name-input-error"></span>
             <input
                 type="text"
-                name="occupation-input"
+                name="aboutinput"
                 id="about"
                 placeholder="Профессия"
                 className="popup__input popup__input_type_occupation"
                 required
                 minLength="2"
                 maxLength="200"
-                onChange={handleDescriptionChange}
-                value={description || ''}
+                onChange={handleChange}
+                value={values.aboutinput || ''}
             />
             <span className="popup__input-error occupation-input-error"></span>
         </PopupWithForm>

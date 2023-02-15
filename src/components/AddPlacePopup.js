@@ -1,30 +1,16 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useForm } from "../hooks/useForm";
 import PopupWithForm from "./PopupWithForm";
 
 function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
-    const [name, setName] = useState('');
-    const [link, setLink] = useState('');
     const { values, handleChange, setValues } = useForm({});
 
     useEffect(() => {
         if (isOpen) {
-            // setName('');
             setValues('');
-            // setLink('');
         }
 
     }, [isOpen])
-    // debugger
-
-    function handleNameChange(e) {
-        // setName(e.target.value);
-        handleChange(e);
-    }
-
-    function handleLinkChange(e) {
-        setLink(e.target.value);
-    }
 
     function handleSubmit(e) {
         e.preventDefault();

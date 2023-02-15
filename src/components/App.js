@@ -89,9 +89,9 @@ function App() {
       .catch((error) => console.log(`Ошибка при удалении карточки: ${error}`));
   }
 
-  function handleUpdateUser({ name, about }) {
+  function handleUpdateUser({ nameinput, aboutinput }) {
     api
-      .setUserInfo({ name, about })
+      .setUserInfo({ name: nameinput, about: aboutinput })
       .then((userData) => {
         setCurrentUser(userData);
         closeAllPopups();
