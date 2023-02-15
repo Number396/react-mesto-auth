@@ -171,7 +171,6 @@ function App() {
     <div className="page">
       <CurrentUserContext.Provider value={currentUser}>
         <Header
-          isLoggedIn={loggedIn}
           onLoginClick={handleLoginClick}
           userData={userData}
         />
