@@ -110,9 +110,9 @@ function App() {
       .catch((error) => console.log(`Ошибка при обновлении аватара: ${error}`));
   }
 
-  function handleAddPlaceSubmit({ name, link }) {
+  function handleAddPlaceSubmit({ placeinput, linkinput }) {
     api
-      .addCard({ name, link })
+      .addCard({ name: placeinput, link: linkinput })
       .then((newCard) => {
         setCards([newCard, ...cards]);
         closeAllPopups();
