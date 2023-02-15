@@ -89,9 +89,9 @@ function App() {
       .catch((error) => console.log(`Ошибка при удалении карточки: ${error}`));
   }
 
-  function handleUpdateUser({ nameinput, aboutinput }) {
+  function handleUpdateUser({ name, about }) {
     api
-      .setUserInfo({ name: nameinput, about: aboutinput })
+      .setUserInfo({ name, about })
       .then((userData) => {
         setCurrentUser(userData);
         closeAllPopups();
@@ -110,9 +110,9 @@ function App() {
       .catch((error) => console.log(`Ошибка при обновлении аватара: ${error}`));
   }
 
-  function handleAddPlaceSubmit({ placeinput, linkinput }) {
+  function handleAddPlaceSubmit({ name, link }) {
     api
-      .addCard({ name: placeinput, link: linkinput })
+      .addCard({ name, link })
       .then((newCard) => {
         setCards([newCard, ...cards]);
         closeAllPopups();

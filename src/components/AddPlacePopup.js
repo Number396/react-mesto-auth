@@ -9,7 +9,6 @@ function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
         if (isOpen) {
             setValues('');
         }
-
     }, [isOpen])
 
     function handleSubmit(e) {
@@ -28,7 +27,7 @@ function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
         >
             <input
                 type="text"
-                name="placeinput"
+                name="name"
                 id="placeInput"
                 placeholder="Наименование места"
                 className="popup__input popup__input_type_place"
@@ -36,19 +35,19 @@ function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
                 minLength="2"
                 maxLength="30"
                 onChange={handleChange}
-                value={values.placeinput || ''}
+                value={values.name || ''}
 
             />
             <span className="popup__input-error place-input-error"></span>
             <input
                 type="url"
-                name="linkinput"
+                name="link"
                 id="linkInput"
                 placeholder="Введите ссылку"
                 className="popup__input popup__input_type_link"
                 required
                 onChange={handleChange}
-                value={values.linkinput || ''}
+                value={values.link || ''}
             />
             <span className="popup__input-error link-input-error"></span>
         </PopupWithForm>
