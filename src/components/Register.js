@@ -1,21 +1,23 @@
-import { useState } from "react";
+// import { useState } from "react";
+import { useForm } from "../hooks/useForm";
 import AuthPage from "./AuthPage";
 
 
 function Register({ loggedIn, handleRegister }) {
-    const [userData, setUserData] = useState({
-        email: '',
-        password: ''
-    });
+    const { values, handleChange, setValues } = useForm({});
+    // const [userData, setUserData] = useState({
+    //     email: '',
+    //     password: ''
+    // });
 
-    function handleChange(e) {
-        const { name, value } = e.target;
-        setUserData({ ...userData, [name]: value });
-    }
+    // function handleChange(e) {
+    //     const { name, value } = e.target;
+    //     setUserData({ ...userData, [name]: value });
+    // }
 
     function handleSubmit(e) {
         e.preventDefault();
-        handleRegister(userData);
+        handleRegister(values);
     }
 
 
@@ -39,7 +41,7 @@ function Register({ loggedIn, handleRegister }) {
                 minLength="2"
                 maxLength="40"
                 onChange={handleChange}
-                value={userData.email || ''}
+                value={values.email || ''}
             />
             <input
                 type="password"
@@ -51,7 +53,7 @@ function Register({ loggedIn, handleRegister }) {
                 minLength="2"
                 maxLength="40"
                 onChange={handleChange}
-                value={userData.password || ''}
+                value={values.password || ''}
             />
 
         </AuthPage>
